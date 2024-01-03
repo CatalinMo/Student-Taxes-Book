@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  mysql:
+    image: mysql
+    container_name: database_container
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: student_taxes
+    volumes:
+      - ./student-taxes-app/src/main/resources/db/db_init.sql:/docker-entrypoint-initdb.d/db_init.sql
+    restart: always
