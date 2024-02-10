@@ -158,9 +158,9 @@
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           <a class="dropdown-item" (click)="open(editAccount, false); setId(account.id); setForm(account)">Editează cont</a>
           <a class="dropdown-item" (click)="open(changePassword, false); setId(account.id)">Schimbare parolă</a>
-          <a *ngIf="account.lastName != 'Taxe Studentesti'" class="dropdown-item" (click)="open(addStudy, true); setAccountId(account.id); setAccountRequest(account)">Adăugare studiu</a>
-          <a *ngIf="account.lastName != 'Taxe Studentesti'" class="dropdown-item" (click)="open(activeStudy, true); setAccount(account)">Studii active</a>
-          <a *ngIf="account.lastName != 'Taxe Studentesti'" class="dropdown-item" (click)="open(deleteAccount, false); setId(account.id)">Șterge cont</a>
+          <a *ngIf="account.cnp" class="dropdown-item" (click)="open(addStudy, true); setAccountId(account.id); setAccountRequest(account)">Adăugare studiu</a>
+          <a *ngIf="account.cnp" class="dropdown-item" (click)="open(activeStudy, true); setAccount(account)">Studii active</a>
+          <a *ngIf="account.cnp" class="dropdown-item" (click)="open(deleteAccount, false); setId(account.id)">Șterge cont</a>
         </div>
       </div>
     </td>

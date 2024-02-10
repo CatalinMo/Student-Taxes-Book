@@ -45,7 +45,7 @@ export class StudentActiveFeesComponent implements OnInit {
   markFeeAsPaid() {
     const paidFee = this.convertToPaidFee();
     let selectedAccount = this.taxOfficeService.getAccountRequest();
-    const indexOfPaidActiveFee = selectedAccount.activeFees.indexOf(this.selectedActiveFee);
+    const indexOfPaidActiveFee = selectedAccount.activeFees.findIndex(fee => fee.name === this.selectedActiveFee.name && fee.value === this.selectedActiveFee.value);
     selectedAccount.activeFees.splice(indexOfPaidActiveFee, 1);
     selectedAccount.paidFees.push(paidFee);
     this.accountServiceRepository.markFeeAsPaid(this.taxOfficeService.getAccountId(), this.selectedActiveFee.id, selectedAccount).subscribe();

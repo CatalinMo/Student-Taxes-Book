@@ -66,7 +66,7 @@ export class BacklogFeesComponent implements OnInit {
         accounts.filter(account => {
         return this.calculateRemainingDays(account.limitDate) < -1;
       }))
-    )
+    );
   }
 
   private filterLimitFees(pipe: any) {

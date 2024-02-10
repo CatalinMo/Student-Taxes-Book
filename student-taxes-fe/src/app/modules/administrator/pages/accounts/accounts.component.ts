@@ -32,7 +32,7 @@ export class AccountsComponent implements OnInit {
   changePasswordForm = new FormGroup({
     newPassword: new FormControl('', [Validators.required, Validators.pattern('(?=\\D*\\d)(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z]).{8,30}')]),
     secondNewPassword: new FormControl('', [Validators.required, Validators.pattern('(?=\\D*\\d)(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z]).{8,30}')])
-  }, {validators: this.checkPasswords})
+  }, {validators: this.checkPasswords});
   id: number;
 
   constructor(
@@ -94,7 +94,7 @@ export class AccountsComponent implements OnInit {
   }
 
   setAccountId(id: number) {
-    this.administratorService.setAccountId(id)
+    this.administratorService.setAccountId(id);
   }
 
   setAccountRequest(account: AccountModel) {
@@ -109,7 +109,7 @@ export class AccountsComponent implements OnInit {
   private checkPasswords(group: FormGroup) {
     const password = group.value.newPassword;
     const confirmPassword = group.value.secondNewPassword;
-    return password === confirmPassword ? null : { notSame: true }
+    return password === confirmPassword ? null : { notSame: true };
    }
 
   private getAccounts() {

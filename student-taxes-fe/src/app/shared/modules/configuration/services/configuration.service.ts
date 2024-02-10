@@ -24,7 +24,7 @@ export class ConfigurationService {
                     resolve(true);
                 }, (error: HttpErrorResponse) => {
                     reject(error);
-                })
+                });
         }));
     }
 

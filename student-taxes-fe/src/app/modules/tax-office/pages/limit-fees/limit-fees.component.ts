@@ -66,7 +66,7 @@ export class LimitFeesComponent implements OnInit {
         accounts.filter(account => {
         return (this.calculateRemainingDays(account.limitDate) < 5 && this.calculateRemainingDays(account.limitDate) > -1);
       }))
-    )
+    );
   }
 
   private filterLimitFees(pipe: any) {

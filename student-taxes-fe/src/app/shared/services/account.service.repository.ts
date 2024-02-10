@@ -47,7 +47,6 @@ export class AccountServiceRepository {
   }
 
   updateAccount(id: number, account: AccountRequest) {
-    console.log(account);
     return this.http.put(this.endpoints.updateAccount(id), account, httpOptions);
   }
 
@@ -59,7 +58,7 @@ export class AccountServiceRepository {
     const requestData = {
       ids: ids,
       activeFee: activeFee
-    }
+    };
     return this.http.put(this.endpoints.assignFeeToAccounts(), requestData, httpOptions);
   }
 
@@ -68,7 +67,7 @@ export class AccountServiceRepository {
       accountId: accountId,
       activeFeeId: activeFeeId,
       accountRequest: accountRequest
-    }
+    };
     return this.http.put(this.endpoints.markFeeAsPaid(), requestData, httpOptions);
   }
 

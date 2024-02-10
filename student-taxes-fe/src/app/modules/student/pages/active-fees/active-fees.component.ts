@@ -48,7 +48,7 @@ export class ActiveFeesComponent implements OnInit {
           this.markFeeAsPaid(activeFee);
         }
       }
-    })
+    });
 
     paymentHandler.open({
       name: "Plătește taxa",
@@ -120,7 +120,7 @@ export class ActiveFeesComponent implements OnInit {
   private markFeeAsPaid(activeFee: ActiveFeeModel) {
     const paidFee = this.convertToPaidFee(activeFee);
     let selectedAccount = this.convertToAccountRequest();
-    const indexOfPaidActiveFee = selectedAccount.activeFees.indexOf(activeFee);
+    const indexOfPaidActiveFee = selectedAccount.activeFees.findIndex(fee => fee.name === activeFee.name && fee.value === activeFee.value);
     selectedAccount.activeFees.splice(indexOfPaidActiveFee, 1);
     selectedAccount.paidFees.push(paidFee);
     this.accountServiceRepository.markFeeAsPaid(this.selectedAccount.id, activeFee.id, selectedAccount).subscribe();
