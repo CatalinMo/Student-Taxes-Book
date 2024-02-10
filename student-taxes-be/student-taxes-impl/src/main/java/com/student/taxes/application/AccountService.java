@@ -17,10 +17,10 @@ import com.student.taxes.infrastructure.ActiveFeeRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -34,12 +34,13 @@ public class AccountService implements AccountServiceApi {
     private final UserProperties userProperties;
     private final ObjectMapper objectMapper;
     private final ModelMapper modelMapper;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
     public void createAccount(AccountRequestDto request) {
         if (accountRepository.findByCnp(request.getCnp()) == null) {
             AccountEntity accountEntity = convert(request, AccountEntity.class);
-            accountEntity.setPassword(getEncodedPassword(userProperties.getDefaultPassword()));
+            accountEntity.setPassword(getEncryptedPassword(userProperties.getDefaultPassword()));
             accountEntity.setRole(userProperties.getRole());
             accountRepository.save(accountEntity);
         }
@@ -79,7 +80,7 @@ public class AccountService implements AccountServiceApi {
     @Override
     public void changePassword(Long id, String newPassword) {
         AccountEntity accountEntity = accountRepository.findById(id).orElseThrow(NullPointerException::new);
-        accountEntity.setPassword(getEncodedPassword(newPassword));
+        accountEntity.setPassword(getEncryptedPassword(newPassword));
         accountRepository.save(accountEntity);
     }
 
@@ -131,12 +132,8 @@ public class AccountService implements AccountServiceApi {
         throw new BadUserException("Utilizator greșit");
     }
 
-    private String getEncodedPassword(String password) {
-        return Base64.getEncoder().encodeToString(password.getBytes());
-    }
-
-    private String getDecodedPassword(String encodedPassword) {
-        return new String(Base64.getDecoder().decode(encodedPassword.getBytes()));
+    private String getEncryptedPassword(String password) {
+        return bCryptPasswordEncoder.encode(password);
     }
 
     private Set<ActiveFeeEntity> removeActiveFeeEntity(Set<ActiveFeeEntity> activeFeeEntities, Long paidFeeId) {
@@ -158,7 +155,7 @@ public class AccountService implements AccountServiceApi {
     }
 
     private UserIdentityResponseDto checkUserAndReturn(AccountEntity accountEntity, String password) {
-        if (password.equals(getDecodedPassword(accountEntity.getPassword()))) {
+        if (bCryptPasswordEncoder.matches(password, accountEntity.getPassword())) {
             return convert(accountEntity, UserIdentityResponseDto.class);
         }
         throw new BadUserException("Utilizator greșit");

@@ -102,7 +102,7 @@ create table if not exists study_fee
     foreign key (study_id) references study (study_id)
     );
 
-INSERT INTO `account` VALUES (1,NULL,'admintaxestudentesti@gmail.com','Admin','Taxe','YWRtaW4u','0784874557','Admin'),(2,NULL,'biroutaxestudentesti@gmail.com','Birou','Taxe','Qmlyb3UxMjM0Lg==','0784874556','Birou Taxe'),(3,'1111122222333','user@gmail.com','User','User','U3R1ZGVudDEyMzQu','07858645787','Student');
+INSERT INTO `account` VALUES (1,NULL,'admintaxestudentesti@gmail.com','Admin','Taxe','$2a$10$JZNZU39nHmgq5Dv3rb9DT.pqMEjhmq8kgN76Bt3Wd9cgbqm/gLC5y','0784874557','Admin'),(2,NULL,'biroutaxestudentesti@gmail.com','Birou','Taxe','$2a$10$ur2nGScSanqvgyJD4v/VCuooatX9FqbbGolu496gNCssmcgmgkZ2i','0784874556','Birou Taxe'),(3,'1111122222333','user@gmail.com','User','User','$2a$10$AD85z9oylI9uQzzQwlvXCeqHV9Pjrt9MrfxnOZAbBDCjc5B8G1CsO','07858645787','Student');
 
 INSERT INTO `active_fee` VALUES (169,'','IETI_CTI_MTI_IF_1','2023-07-21 00:00:00.000000','Taxa studiu',3000,3),(174,'','C1','2023-07-15 00:00:00.000000','Taxa camin C1',130,3);
 
