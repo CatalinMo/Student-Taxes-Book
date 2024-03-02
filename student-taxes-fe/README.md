@@ -8,13 +8,13 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Install the dependencies
 
-- open a terminal in root directory
+- open a terminal in the root directory
 - run npm install 
 - if it doesn't work, try with npm install --legacy-peer-deps
 
 ## Start the app
 
-- open a terminal in root directory
+- open a terminal in the root directory
 - run npm start
 
 # Enjoy!
